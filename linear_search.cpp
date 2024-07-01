@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+template <typename T>
+class Stacks {
+private:
+    T *Stack;
+    int n;
+    int t = -1;
+public:
+    Stacks() {
+        n = 5;
+        Stack = new T[n];
+    }
+
+    Stacks(int n) {
+        this->n = n;
+        Stack = new T[n];
+    }
+
+    bool isFull() {
+        return t == n - 1;
+    }
+
+    bool isEmpty() {
+        return t == -1;
+    }
+
+    void push(T x) {
+        if (isFull()) {
+            cout << "overflow\n";
+        } else {
+            Stack[++t] = x;
+        }
+    }
+
+    void pop() {
+        if (isEmpty()) {
+            cout << "Underflow\n";
+        } else {
+            t--;
+        }
+    }
+
+    void printStack() {
+        for (int i = t; i >= 0; i--) {
+            cout << Stack[i] << endl;
+        }
+    }
+
+    T top() {  // Changed return type to T
+        if (!isEmpty()) {
+            return Stack[t];
+        } else {
+            throw runtime_error("Stack is empty");
+        }
+    }
+
+    int Size() {
+        return t + 1;
+    }
+};
+
+int main() {
+    Stacks<string> *s = new Stacks<string>();
+    s->push("Richard");
+    s->push("Karim");
+
+    s->printStack();
+
+    return 0;
+}
